@@ -22,19 +22,22 @@ body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;back
 .pk .n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--on-acc);font-size:12px;font-weight:900;margin-inline-end:8px;vertical-align:middle;line-height:1}
 .pk .seg{display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px;border-radius:12px;border:1px solid var(--line);background:var(--tint)}
 .pk #pkProtoSeg{grid-template-columns:repeat(3,1fr)}
-.pk .seg button{border:0;background:none;color:var(--muted);font:inherit;font-size:13px;font-weight:800;padding:10px 2px;border-radius:9px;cursor:pointer;transition:.25s}
+.pk .seg button{position:relative;border:0;background:none;color:var(--muted);font:inherit;font-size:13px;font-weight:800;padding:10px 2px;border-radius:9px;cursor:pointer;transition:.25s}
 .pk #pkProtoSeg button{font-size:12.5px;font-weight:900;line-height:1.35;padding:8px 2px}
 .pk .seg button.act{background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--on-acc);box-shadow:0 0 0 2px color-mix(in srgb,var(--cyan) 55%,transparent),0 6px 16px rgba(0,0,0,.32)}
 .pk .vols{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
 .pk .vol{position:relative;padding:11px 0;border-radius:10px;border:1px solid var(--line);background:var(--tint2);color:var(--text);font:inherit;font-size:17px;font-weight:900;line-height:1.2;cursor:pointer;transition:.2s}
-.pk .dur{padding:10px 4px;border-radius:12px;text-align:center;font-size:15px;font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--on-acc);box-shadow:0 5px 14px rgba(0,0,0,.22);cursor:default;user-select:none}
+.pk .dur{position:relative;padding:10px 4px;border-radius:12px;text-align:center;font-size:15px;font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--on-acc);box-shadow:0 5px 14px rgba(0,0,0,.22);cursor:default;user-select:none}
 .pk .vol.txt{font-size:14px;padding:11px 2px}
 .pk .vols.two .vol{padding:16px 0;font-size:22px}
 .pk .vol small{display:block;font-size:11px;color:var(--muted);font-weight:800}
 .pk .vol:hover{border-color:var(--cyan)}
 .pk .vol.act{z-index:1;transform:scale(1.07);background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--on-acc);border-color:var(--cyan);box-shadow:0 0 0 3px color-mix(in srgb,var(--cyan) 50%,transparent),0 10px 22px rgba(0,0,0,.35)}
 .pk .vol.act small{color:var(--on-acc);opacity:.9}
-.pk .vol.act::after{content:"✓";position:absolute;top:-9px;left:-7px;width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:var(--on-acc);color:var(--cyan);border:2px solid var(--cyan);font-size:12px;font-weight:900;line-height:1}
+
+/* استایل مشترک تیک تایید برای تمامی گزینه‌های انتخاب شده در سه مرحله */
+.pk .vol.act::after, .pk .seg button.act::after, .pk .dur::after{content:"✓";position:absolute;top:-9px;left:-7px;width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:var(--on-acc);color:var(--cyan);border:2px solid var(--cyan);font-size:12px;font-weight:900;line-height:1}
+
 .pk .vol i{position:absolute;top:-7px;inset-inline-end:50%;transform:translateX(50%);font-style:normal;font-size:9px;font-weight:900;background:var(--coral);color:var(--on-coral);border-radius:999px;padding:0 5px;white-space:nowrap}
 [dir=rtl] .pk .vol i{transform:translateX(-50%)}
 .pk .sum{margin-top:4px;padding:18px 9px;border-radius:14px;background:var(--sumbg);border:1px solid var(--line);text-align:center}
