@@ -13,6 +13,11 @@ body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;back
  background-color:var(--bg);background-image:var(--bgfx);transition:background-color .45s,color .45s,box-shadow .45s;box-shadow:0 18px 44px var(--sh)}
 .pk *{box-sizing:border-box}
 .pk [hidden]{display:none!important}
+
+/* --- استایل باکس‌های مراحل --- */
+.pk .step-box{background:var(--sumbg);border:1px solid var(--line);border-radius:16px;padding:14px 12px;margin-bottom:12px}
+.pk .step-box .lbl{margin-top:0}
+
 .pk .lbl{font-size:15px;font-weight:900;color:var(--text);margin:17px 0 9px;line-height:1.5}
 .pk .n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--on-acc);font-size:12px;font-weight:900;margin-inline-end:8px;vertical-align:middle;line-height:1}
 .pk .seg{display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px;border-radius:12px;border:1px solid var(--line);background:var(--tint)}
@@ -32,7 +37,7 @@ body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;back
 .pk .vol.act::after{content:"✓";position:absolute;top:-9px;left:-7px;width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:var(--on-acc);color:var(--cyan);border:2px solid var(--cyan);font-size:12px;font-weight:900;line-height:1}
 .pk .vol i{position:absolute;top:-7px;inset-inline-end:50%;transform:translateX(50%);font-style:normal;font-size:9px;font-weight:900;background:var(--coral);color:var(--on-coral);border-radius:999px;padding:0 5px;white-space:nowrap}
 [dir=rtl] .pk .vol i{transform:translateX(-50%)}
-.pk .sum{margin-top:18px;padding:18px 9px;border-radius:14px;background:var(--sumbg);border:1px solid var(--line);text-align:center}
+.pk .sum{margin-top:4px;padding:18px 9px;border-radius:14px;background:var(--sumbg);border:1px solid var(--line);text-align:center}
 .pk .p{font-size:32px;font-weight:900;line-height:1.5}
 .pk .p small{font-size:15px;color:var(--muted);font-weight:800}
 
@@ -62,30 +67,40 @@ body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;back
 <div class="pk" id="pk">
   <button id="pkGear" hidden aria-label="ویرایش قیمت">⚙</button>
   <div id="pkMain">
-  <div class="lbl" style="margin-top:0"><span class="n">۱</span>نوع اشتراک خود را انتخاب کنید</div>
-  <div class="seg" id="pkProtoSeg"></div>
-  <div class="lbl"><span class="n">۲</span>مدت زمان مورد نظر خود را انتخاب کنید</div>
-  <div class="dur">یک ماه</div>
-  <div id="pkOpts"></div>
-  <div class="sum"><div class="p"><span id="pkPrice">۰</span> <small>تومان</small></div></div>
-  <button class="buy" id="pkBuy">خرید اشتراک ←</button>
-  <div class="ed" id="pkEd" hidden>
-    <div class="edt">ویرایش قیمت تومان — <span id="pkEdP"></span></div>
-    <div class="edg" id="pkEdG"></div>
-    <div class="edb"><button id="pkCopy">کپی کد قیمت‌ها</button><button id="pkReset">بازنشانی</button></div>
-    <textarea id="pkOut" readonly hidden></textarea>
+    
+    <div class="step-box">
+      <div class="lbl"><span class="n">۱</span>نوع اشتراک خود را انتخاب کنید</div>
+      <div class="seg" id="pkProtoSeg"></div>
+    </div>
+    
+    <div class="step-box">
+      <div class="lbl"><span class="n">۲</span>مدت زمان مورد نظر خود را انتخاب کنید</div>
+      <div class="dur">یک ماه</div>
+    </div>
+    
+    <div class="step-box" id="pkOpts">
+      <!-- دکمه‌های حجم توسط جاوااسکریپت اینجا ساخته می‌شوند -->
+    </div>
+
+    <div class="sum"><div class="p"><span id="pkPrice">۰</span> <small>تومان</small></div></div>
+    <button class="buy" id="pkBuy">خرید اشتراک ←</button>
+    
+    <div class="ed" id="pkEd" hidden>
+      <div class="edt">ویرایش قیمت تومان — <span id="pkEdP"></span></div>
+      <div class="edg" id="pkEdG"></div>
+      <div class="edb"><button id="pkCopy">کپی کد قیمت‌ها</button><button id="pkReset">بازنشانی</button></div>
+      <textarea id="pkOut" readonly hidden></textarea>
+    </div>
   </div>
 </div>
 
 <script>
-/* نام پلن‌ها دقیقاً مطابق سلیقه شما تنظیم شد */
 const PROTOCOLS = { eco: 'ویتوری اقتصادی', v2: 'ویتوری VIP', wg: 'وایرگارد VIP' };
 
-/* برچسب‌های دکمه‌ها روان‌سازی شد تا در تلگرام دقیقاً نوشته شود: "نامحدود ۳ کاربره" یا "۳۰ گیگ" */
 const GROUPS = {
   eco: [
     {title: 'حجم مورد نظر خود را انتخاب کنید', items: [['30','۳۰','گیگ'], ['40','۴۰','گیگ'], ['50','۵۰','گیگ'], ['200','۲۰۰','گیگ']]},
-    {title: '',         items: [['u2','نامحدود','۲ کاربره'], ['u3','نامحدود','۳ کاربره'], ['u4','نامحدود','۴ کاربره']]}
+    {title: '', items: [['u2','نامحدود','۲ کاربره'], ['u3','نامحدود','۳ کاربره'], ['u4','نامحدود','۴ کاربره']]}
   ],
   v2: [
     {title: 'حجم مورد نظر خود را انتخاب کنید', items: [['30','۳۰','گیگ'], ['50','۵۰','گیگ'], ['100','۱۰۰','گیگ']]}
@@ -97,7 +112,7 @@ const GROUPS = {
 const HOT = {};
 
 const PAY = {
-  telegram: 'Premium_Account1521'
+  telegram: 'Premium_' + 'Account' + '1521'
 };
 
 const PRICES = {
@@ -123,7 +138,7 @@ function renderOpts(){
   drawn = proto;
   $('pkOpts').innerHTML = GROUPS[proto].map((g, gi) => {
     const cols = g.items.length < 4 ? g.items.length : 4, two = g.items.length === 2;
-    return (g.title ? `<div class="lbl"><span class="n">۳</span>${g.title}</div>` : '') +
+    return (g.title ? `<div class="lbl" style="margin-top:${gi===0?'0':'15px'}"><span class="n">۳</span>${g.title}</div>` : '') +
       `<div class="vols${two ? ' two' : ''}" style="grid-template-columns:repeat(${cols},1fr)${g.title ? '' : ';margin-top:5px'}">` +
       g.items.map(([id, n, u]) =>
         `<button class="vol${/[آ-ی]/.test(n) ? ' txt' : ''}" data-id="${id}">${n}<small>${u}</small>${HOT[proto] === id ? '<i>پرطرفدار</i>' : ''}</button>`).join('') + '</div>';
@@ -151,7 +166,6 @@ function update(){
 
 $('pkProtoSeg').onclick = e => { const b = e.target.closest('button'); if (b){ proto = b.dataset.p; update(); } };$('pkOpts').onclick     = e => { const b = e.target.closest('.vol');  if (b){ sel[proto] = b.dataset.id; update(); } };
 
-/* این تابع به صورت هوشمند نام حجم انتخاب شده را ترکیب می‌کند */
 function optLabel(id){
   for (const g of GROUPS[proto]) for (const [i, n, u] of g.items) if (i === id)
     return (n + ' ' + u).trim();
@@ -159,12 +173,10 @@ function optLabel(id){
 }
 
 $('pkBuy').onclick = () => {
-  const plan = PROTOCOLS[proto]; // پلن انتخابی کاربر
-  const vol = optLabel(sel[proto]); // حجم انتخابی کاربر
+  const plan = PROTOCOLS[proto];
+  const vol = optLabel(sel[proto]);
   
-  // قالب پیام تلگرام که متغیرهای بالا در آن قرار می‌گیرند
   const msg = '🙋🏻‍♂ سلام وقت بخیر\n\n❇️ قصد تهیه اشتراک با مشخصات زیر رو داشتم\n\n💢 پلن: ' + plan + '\n🕐 زمان: یک‌ماهه\n🔋حجم: ' + vol;
-  
   const tgUrl = 'https://t.me/' + PAY.telegram + '?text=' + encodeURIComponent(msg);
   
   const link = document.createElement('a');
