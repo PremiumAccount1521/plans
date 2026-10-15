@@ -7,130 +7,127 @@
 <style>
 body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;background:#030d1a;font-family:Vazirmatn,Tahoma,"Segoe UI",sans-serif}
 
-/* ===== شروع کادر ===== */
 .pk{--bg:#06182c;--text:#e8f4ff;--muted:#8fa9c4;--line:rgba(120,220,255,.18);--cyan:#19e3ff;--teal:#00c2a8;--coral:#ff5d6c;
- --on-acc:#02131f;--on-coral:#fff;--sumbg:rgba(0,0,0,.25);--tint:rgba(255,255,255,.04);--tint2:rgba(255,255,255,.06);--inbg:rgba(0,0,0,.3);--bgfx:linear-gradient(160deg,rgba(25,227,255,.12),rgba(255,255,255,.03));--sh:rgba(0,0,0,.4);
- width:100%;max-width:340px;box-sizing:border-box;color:var(--text);line-height:1.6;padding:20px 14px;border-radius:20px;border:1px solid var(--line);
+ --on-acc:#02131f;--on-coral:#fff;--sumbg:rgba(0,0,0,.25);--tint:rgba(255,255,255,.04);--tint2:rgba(255,255,255,.06);--inbg:rgba(0,0,0,.3);--bgfx:none;--sh:rgba(0,0,0,.4);
+ width:100%;max-width:340px;box-sizing:border-box;color:var(--text);position:relative;font-weight:800;line-height:1.6;padding:16px 14px 18px;border-radius:20px;border:1px solid var(--line);
  background-color:var(--bg);background-image:var(--bgfx);transition:background-color .45s,color .45s,box-shadow .45s;box-shadow:0 18px 44px var(--sh)}
 .pk *{box-sizing:border-box}
-.pk .top{display:flex;justify-content:space-between;align-items:center}
-.pk .top b{font-size:15px}
-.pk .wg{padding:1px 10px;border-radius:999px;border:1px solid var(--line);color:var(--cyan);font-size:11px;font-weight:800;direction:ltr}
-.pk .lbl{font-size:11px;color:var(--muted);margin:15px 0 7px}
+.pk [hidden]{display:none!important}
+.pk .lbl{font-size:15px;font-weight:900;color:var(--text);margin:17px 0 9px;line-height:1.5}
+.pk .n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--on-acc);font-size:12px;font-weight:900;margin-inline-end:8px;vertical-align:middle;line-height:1}
 .pk .seg{display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px;border-radius:12px;border:1px solid var(--line);background:var(--tint)}
-.pk #pkProtoSeg{grid-template-columns:1fr 1fr} 
-.pk .seg button{border:0;background:none;color:var(--muted);font:inherit;font-size:12px;font-weight:800;padding:9px 2px;border-radius:9px;cursor:pointer;transition:.25s}
-.pk .seg button.act{background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--on-acc);box-shadow:0 5px 14px rgba(0,0,0,.22)}
-.pk .vols{display:grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));gap:4px}
-.pk .vol{position:relative;padding:11px 0;border-radius:10px;border:1px solid var(--line);background:var(--tint2);color:var(--text);font:inherit;font-size:14px;font-weight:900;line-height:1.2;cursor:pointer;transition:.2s}
-.pk .vol small{display:block;font-size:9px;color:var(--muted);font-weight:400}
+.pk #pkProtoSeg{grid-template-columns:repeat(3,1fr)}
+.pk .seg button{border:0;background:none;color:var(--muted);font:inherit;font-size:13px;font-weight:800;padding:10px 2px;border-radius:9px;cursor:pointer;transition:.25s}
+.pk #pkProtoSeg button{font-size:12.5px;font-weight:900;line-height:1.35;padding:8px 2px}
+.pk .seg button.act{background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--on-acc);box-shadow:0 0 0 2px color-mix(in srgb,var(--cyan) 55%,transparent),0 6px 16px rgba(0,0,0,.32)}
+.pk .vols{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.pk .vol{position:relative;padding:11px 0;border-radius:10px;border:1px solid var(--line);background:var(--tint2);color:var(--text);font:inherit;font-size:17px;font-weight:900;line-height:1.2;cursor:pointer;transition:.2s}
+.pk .dur{padding:10px 4px;border-radius:12px;text-align:center;font-size:15px;font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--on-acc);box-shadow:0 5px 14px rgba(0,0,0,.22);cursor:default;user-select:none}
+.pk .vol.txt{font-size:14px;padding:11px 2px}
+.pk .vols.two .vol{padding:16px 0;font-size:22px}
+.pk .vol small{display:block;font-size:11px;color:var(--muted);font-weight:800}
 .pk .vol:hover{border-color:var(--cyan)}
-.pk .vol.act{border-color:var(--cyan);background:color-mix(in srgb,var(--cyan) 16%,transparent);color:var(--cyan);box-shadow:0 0 14px color-mix(in srgb,var(--cyan) 30%,transparent)}
-.pk .vol i{position:absolute;top:-7px;inset-inline-end:50%;transform:translateX(50%);font-style:normal;font-size:8px;font-weight:700;background:var(--coral);color:var(--on-coral);border-radius:999px;padding:0 5px;white-space:nowrap}
+.pk .vol.act{z-index:1;transform:scale(1.07);background:linear-gradient(135deg,var(--cyan),var(--teal));color:var(--on-acc);border-color:var(--cyan);box-shadow:0 0 0 3px color-mix(in srgb,var(--cyan) 50%,transparent),0 10px 22px rgba(0,0,0,.35)}
+.pk .vol.act small{color:var(--on-acc);opacity:.9}
+.pk .vol.act::after{content:"✓";position:absolute;top:-9px;left:-7px;width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:var(--on-acc);color:var(--cyan);border:2px solid var(--cyan);font-size:12px;font-weight:900;line-height:1}
+.pk .vol i{position:absolute;top:-7px;inset-inline-end:50%;transform:translateX(50%);font-style:normal;font-size:9px;font-weight:900;background:var(--coral);color:var(--on-coral);border-radius:999px;padding:0 5px;white-space:nowrap}
 [dir=rtl] .pk .vol i{transform:translateX(-50%)}
-.pk .sum{margin-top:18px;padding:14px 9px;border-radius:14px;background:var(--sumbg);border:1px solid var(--line);text-align:center}
-.pk .desc{font-size:11px;color:var(--muted)}
-.pk .p{font-size:28px;font-weight:900;line-height:1.5}
-.pk .p small{font-size:11px;color:var(--muted);font-weight:400}
-.pk .note{font-size:11px;color:var(--teal);min-height:20px}
-.pk #pkGear{border:1px solid var(--line);background:var(--tint2);color:var(--text);border-radius:8px;width:24px;height:22px;font-size:13px;cursor:pointer;padding:0}
+.pk .sum{margin-top:18px;padding:18px 9px;border-radius:14px;background:var(--sumbg);border:1px solid var(--line);text-align:center}
+.pk .p{font-size:32px;font-weight:900;line-height:1.5}
+.pk .p small{font-size:15px;color:var(--muted);font-weight:800}
+
+@media(max-width:350px){.pk .lbl{font-size:13px}.pk #pkProtoSeg button{font-size:11px}.pk .vol.txt{font-size:12.5px}.pk .n{width:20px;height:20px;font-size:11px;margin-inline-end:6px}}
+
+.pk .buy{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:12px;padding:14px;border:0;border-radius:14px;cursor:pointer;font:inherit;font-size:17px;font-weight:900;text-decoration:none;color:var(--on-acc);background:linear-gradient(135deg,var(--cyan),var(--teal));box-shadow:0 8px 20px rgba(0,0,0,.3);transition:.2s}
+.pk .buy:hover{transform:translateY(-2px)}
+
+.pk #pkGear{position:absolute;top:8px;left:8px;z-index:2;border:1px solid var(--line);background:var(--tint2);color:var(--text);border-radius:8px;width:24px;height:22px;font-size:13px;cursor:pointer;padding:0}
 .pk .ed{margin-top:14px;padding:10px;border-radius:14px;border:1px dashed var(--cyan);background:color-mix(in srgb,var(--cyan) 6%,transparent)}
 .pk .edt{font-size:12px;font-weight:800;margin-bottom:8px}
-.pk .edg{display:grid;grid-template-columns:auto 1fr 1fr;gap:5px 6px;align-items:center;font-size:11px;color:var(--muted)}
+.pk .edg{display:grid;grid-template-columns:auto 1fr;gap:5px 6px;align-items:center;font-size:11px;color:var(--muted)}
 .pk .edg b{font-size:10px;text-align:center;color:var(--text)}
-.pk .edg input{width:100%;min-width:0;direction:ltr;text-align:center;padding:5px 2px;border-radius:8px;border:1px solid var(--line);background:var(--inbg);color:var(--text);font:inherit;font-size:12px}
+.pk .edg input{width:100%;min-width:0;direction:ltr;text-align:center;padding:5px 2px;border-radius:8px;border:1px solid var(--line);background:var(--inbg);color:var(--text);font:inherit;font-size:13px;font-weight:800}
 .pk .edb{display:flex;gap:6px;margin-top:10px}
-.pk .edb button{flex:1;padding:7px 4px;border-radius:9px;border:1px solid var(--line);background:var(--tint2);color:var(--text);font:inherit;font-size:11px;font-weight:800;cursor:pointer}
+.pk .edb button{flex:1;padding:7px 4px;border-radius:9px;border:1px solid var(--line);background:var(--tint2);color:var(--text);font-size:11px;font-weight:800;cursor:pointer}
 .pk #pkOut{display:block;width:100%;height:90px;margin-top:8px;direction:ltr;font-size:10px;background:var(--inbg);color:var(--text);border:1px solid var(--line);border-radius:8px}
-.pk .edn{font-size:10px;color:var(--muted);margin-top:8px;line-height:1.6}
-.pk [hidden]{display:none!important}
-/* ===== تم هر پروتکل ===== */
-.pk[data-proto="wg_vip"]{--bg:#b3122b;--text:#fff;--muted:#ffd3d8;--line:rgba(255,255,255,.3);--cyan:#fff;--teal:#ffe3e6;--coral:#ffcf4a;--on-acc:#8a0f22;--on-coral:#3a0a10;--sumbg:rgba(0,0,0,.2);--tint:rgba(0,0,0,.12);--tint2:rgba(255,255,255,.12);--inbg:rgba(0,0,0,.25);--bgfx:linear-gradient(160deg,rgba(255,255,255,.14),rgba(0,0,0,.18));--sh:rgba(179,18,43,.5)}
-.pk[data-proto="lt_vip"]{--bg:#1450e6;--text:#fff;--muted:#cfdcff;--line:rgba(255,255,255,.3);--cyan:#fff;--teal:#d7e4ff;--coral:#ffcf4a;--on-acc:#0b3aa8;--on-coral:#2a1f00;--sumbg:rgba(0,10,60,.22);--tint:rgba(0,10,60,.14);--tint2:rgba(255,255,255,.12);--inbg:rgba(0,10,60,.28);--bgfx:linear-gradient(160deg,rgba(255,255,255,.16),rgba(0,10,80,.22));--sh:rgba(20,80,230,.5)}
-.pk[data-proto="v2_eco"]{--bg:#fff;--text:#0b1a2e;--muted:#5a6b82;--line:rgba(10,40,80,.16);--cyan:#1463ff;--teal:#0aa5a0;--coral:#ff5d6c;--on-acc:#fff;--on-coral:#fff;--sumbg:rgba(10,40,80,.05);--tint:rgba(10,40,80,.05);--tint2:rgba(10,40,80,.04);--inbg:#f1f4f9;--bgfx:none;--sh:rgba(255,255,255,.25)}
+.pk .edn{font-size:11px;font-weight:800;color:var(--muted);margin-top:8px;line-height:1.6}
+
+.pk[data-proto="eco"]{--bg:#1450e6;--text:#fff;--muted:#cfdcff;--line:rgba(255,255,255,.3);--cyan:#fff;--teal:#d7e4ff;--coral:#ffcf4a;--on-acc:#0b3aa8;--on-coral:#2a1f00;--sumbg:rgba(0,10,60,.22);--tint:rgba(0,10,60,.14);--tint2:rgba(255,255,255,.12);--inbg:rgba(0,10,60,.28);--bgfx:linear-gradient(160deg,rgba(255,255,255,.16),rgba(0,10,80,.22));--sh:rgba(20,80,230,.5)}
+.pk[data-proto="v2"]{--bg:#4a22b0;--text:#fff;--muted:#e2d4ff;--line:rgba(255,255,255,.3);--cyan:#ffd166;--teal:#ffa94d;--coral:#ff4d8d;--on-acc:#2f1200;--on-coral:#fff;--sumbg:rgba(20,0,70,.32);--tint:rgba(20,0,70,.2);--tint2:rgba(255,255,255,.12);--inbg:rgba(20,0,70,.38);--bgfx:linear-gradient(160deg,rgba(255,255,255,.16),rgba(15,0,60,.3));--sh:rgba(110,60,230,.55)}
+.pk[data-proto="wg"]{--bg:#b3122b;--text:#fff;--muted:#ffd3d8;--line:rgba(255,255,255,.3);--cyan:#fff;--teal:#ffe3e6;--coral:#ffcf4a;--on-acc:#8a0f22;--on-coral:#3a0a10;--sumbg:rgba(0,0,0,.2);--tint:rgba(0,0,0,.12);--tint2:rgba(255,255,255,.12);--inbg:rgba(0,0,0,.25);--bgfx:linear-gradient(160deg,rgba(255,255,255,.14),rgba(0,0,0,.18));--sh:rgba(179,18,43,.5)}
 </style>
 </head>
 <body>
 
 <div class="pk" id="pk">
-  <div class="top"><b>انتخاب پلن</b><span style="display:flex;gap:6px;align-items:center"><span class="wg" id="pkBadge">v2ray اقتصادی</span><button id="pkGear" hidden aria-label="ویرایش قیمت">⚙</button></span></div>
-  <div class="lbl">نوع سرویس</div>
+  <button id="pkGear" hidden aria-label="ویرایش قیمت">⚙</button>
+  <div id="pkMain">
+  <div class="lbl" style="margin-top:0"><span class="n">۱</span>نوع اشتراک خود را انتخاب کنید</div>
   <div class="seg" id="pkProtoSeg"></div>
-  <div class="lbl" id="pkDurL">مدت زمان</div>
-  <div class="seg" id="pkSeg"><button data-d="1">یک‌ماهه</button><button data-d="3">سه‌ماهه</button></div>
-  <div class="lbl">حجم</div>
-  <div class="vols" id="pkVols"></div>
-  <div class="sum">
-    <div class="desc" id="pkDesc"></div>
-    <div class="p"><span id="pkPrice">۰</span> <small>تومان</small></div>
-    <div class="note" id="pkNote"></div>
-  </div>
+  <div class="lbl"><span class="n">۲</span>مدت زمان مورد نظر خود را انتخاب کنید</div>
+  <div class="dur">یک ماه</div>
+  <div id="pkOpts"></div>
+  <div class="sum"><div class="p"><span id="pkPrice">۰</span> <small>تومان</small></div></div>
+  <button class="buy" id="pkBuy">خرید اشتراک ←</button>
   <div class="ed" id="pkEd" hidden>
-    <div class="edt">ویرایش قیمت در تومان -> <span id="pkEdP"></span></div>
+    <div class="edt">ویرایش قیمت تومان — <span id="pkEdP"></span></div>
     <div class="edg" id="pkEdG"></div>
     <div class="edb"><button id="pkCopy">کپی کد قیمت‌ها</button><button id="pkReset">بازنشانی</button></div>
     <textarea id="pkOut" readonly hidden></textarea>
-    <div class="edn">تغییرات فقط در همین مرورگر دیده می‌شود. برای نمایش به بازدیدکنندگان، «کپی کد قیمت‌ها» را بزنید و به‌جای PLANS در فایل بگذارید.</div>
   </div>
 </div>
 
 <script>
-/* ===== تنظیمات ===== */
-const PROTOCOLS = {         
-  v2_eco: {name: 'v2ray اقتصادی'},
-  v2_vip: {name: 'v2ray VIP'},
-  wg_vip: {name: 'WireGuard VIP'},
-  lt_vip: {name: 'زمان بی‌نهایت VIP', lifetime: true}   
+/* نام پلن‌ها دقیقاً مطابق سلیقه شما تنظیم شد */
+const PROTOCOLS = { eco: 'ویتوری اقتصادی', v2: 'ویتوری VIP', wg: 'وایرگارد VIP' };
+
+/* برچسب‌های دکمه‌ها روان‌سازی شد تا در تلگرام دقیقاً نوشته شود: "نامحدود ۳ کاربره" یا "۳۰ گیگ" */
+const GROUPS = {
+  eco: [
+    {title: 'حجم مورد نظر خود را انتخاب کنید', items: [['30','۳۰','گیگ'], ['40','۴۰','گیگ'], ['50','۵۰','گیگ'], ['200','۲۰۰','گیگ']]},
+    {title: '',         items: [['u2','نامحدود','۲ کاربره'], ['u3','نامحدود','۳ کاربره'], ['u4','نامحدود','۴ کاربره']]}
+  ],
+  v2: [
+    {title: 'حجم مورد نظر خود را انتخاب کنید', items: [['30','۳۰','گیگ'], ['50','۵۰','گیگ'], ['100','۱۰۰','گیگ']]}
+  ],
+  wg: [
+    {title: 'حجم مورد نظر خود را انتخاب کنید', items: [['100','۱۰۰','گیگ'], ['inf','نامحدود','']]}
+  ]
+};
+const HOT = {};
+
+const PAY = {
+  telegram: 'Premium_Account1521'
 };
 
-/* قیمت‌ها و حجم‌های جدید */
-const PLANS = {
-  v2_eco: {
-    30:  {m1: 150000, m3:  560000},
-    40:  {m1: 190000, m3:  720000},
-    50:  {m1: 225000, m3:  860000},
-    200:  {m1: 315000, m3: 1200000}
-  },
-  v2_vip: {
-    30:  {m1: 315000, m3:  650000},
-    40:  {m1: 380000, m3:  850000},
-    50:  {m1: 415000, m3:  980000},
-    100:  {m1: 520000, m3: 1400000}
-  },
-  wg_vip: {
-    30:  {m1: 240000, m3:  560000},
-    40:  {m1: 270000, m3:  720000},
-    50:  {m1: 320000, m3:  860000},
-    100: {m1: 560000, m3: 1500000}
-  },
-  lt_vip: {                       
-    20:  {p:  300000},
-    30:  {p:  450000},
-    40:  {p:  600000},
-    50:  {p:  750000}
- 
-  }
+const PRICES = {
+  eco: { 30: 150000, 40: 190000, 50: 225000, 200: 315000, u2: 350000, u3: 495000, u4: 595000 },
+  v2:  { 30: 315000, 50: 415000, 100: 575000 },
+  wg:  { 100: 350000, inf: 535000 }
 };
 
-const POPULAR = 30;         
-const DEFAULT = JSON.parse(JSON.stringify(PLANS));              
-const EDIT = /[?&]edit\b/.test(location.search) || location.hash === '#edit';   
-const KEY = 'pk_plans_v2'; 
+const DEFAULT = JSON.parse(JSON.stringify(PRICES));
+const EDIT = /[?&]edit\b/.test(location.search) || location.hash === '#edit';
+const KEY = 'pk_prices_v4';
 if (EDIT) { try { const sv = JSON.parse(localStorage.getItem(KEY) || 'null');
-  if (sv) for (const k in sv) if (PLANS[k]) for (const g in sv[k]) if (PLANS[k][g]) Object.assign(PLANS[k][g], sv[k][g]); } catch (e) {} }
+  if (sv) for (const k in sv) if (PRICES[k]) for (const id in sv[k]) if (id in PRICES[k] && sv[k][id] > 0) PRICES[k][id] = +sv[k][id]; } catch (e) {} }
 
-/* ===== منطق ===== */
 const $ = id => document.getElementById(id);
 const fa = n => Math.round(n).toLocaleString('fa-IR');
-let proto = Object.keys(PROTOCOLS)[0], dur = 1, gb = POPULAR, shown = 0, raf;
+let proto = Object.keys(PROTOCOLS)[0], shown = 0, raf, drawn = null;
+const sel = {}; for (const k in PROTOCOLS) sel[k] = HOT[k] || GROUPS[k][0].items[0][0];
 
-$('pkProtoSeg').innerHTML = Object.keys(PROTOCOLS).map(k =>
-  `<button data-p="${k}">${PROTOCOLS[k].name}</button>`).join('');
-let volsFor = null;
-function renderVols(){
-  volsFor = proto;
-  $('pkVols').innerHTML = Object.keys(PLANS[proto]).map(g =>
-    `<button class="vol" data-g="${g}">${fa(+g)}<small>گیگ</small>${+g === POPULAR ? '<i>پرطرفدار</i>' : ''}</button>`).join('');
+$('pkProtoSeg').innerHTML = Object.keys(PROTOCOLS).map(k => `<button data-p="${k}">${PROTOCOLS[k]}</button>`).join('');
+
+function renderOpts(){
+  drawn = proto;
+  $('pkOpts').innerHTML = GROUPS[proto].map((g, gi) => {
+    const cols = g.items.length < 4 ? g.items.length : 4, two = g.items.length === 2;
+    return (g.title ? `<div class="lbl"><span class="n">۳</span>${g.title}</div>` : '') +
+      `<div class="vols${two ? ' two' : ''}" style="grid-template-columns:repeat(${cols},1fr)${g.title ? '' : ';margin-top:5px'}">` +
+      g.items.map(([id, n, u]) =>
+        `<button class="vol${/[آ-ی]/.test(n) ? ' txt' : ''}" data-id="${id}">${n}<small>${u}</small>${HOT[proto] === id ? '<i>پرطرفدار</i>' : ''}</button>`).join('') + '</div>';
+  }).join('');
 }
 
 function tween(to){
@@ -145,58 +142,61 @@ function tween(to){
 }
 
 function update(){
-  const P = PROTOCOLS[proto], name = P.name, life = !!P.lifetime;
-  if (!PLANS[proto][gb]) gb = +Object.keys(PLANS[proto])[0];
-  if (volsFor !== proto) renderVols();
-  const p = PLANS[proto][gb];
-  const price = life ? p.p : (dur === 1 ? p.m1 : p.m3);
-  $('pkDurL').hidden =$('pkSeg').hidden = life;           
-  document.querySelectorAll('#pk .vol').forEach(b => b.classList.toggle('act', +b.dataset.g === gb));
-  document.querySelectorAll('#pkSeg button').forEach(b => b.classList.toggle('act', +b.dataset.d === dur));
+  if (drawn !== proto) renderOpts();
+  document.querySelectorAll('#pk .vol').forEach(b => b.classList.toggle('act', b.dataset.id === sel[proto]));
   document.querySelectorAll('#pkProtoSeg button').forEach(b => b.classList.toggle('act', b.dataset.p === proto));
-  $('pkBadge').textContent = name; $('pk').dataset.proto = proto;
-  tween(price);
-  if (life) {
-    $('pkDesc').textContent = fa(gb) + ' گیگابایت · بدون محدودیت زمانی · ' + name;
-    $('pkNote').textContent = 'قیمت هر گیگ -> ' + fa(Math.round(price / gb / 100) * 100) + ' تومان';
-  } else {
-    const save = Math.round((1 - p.m3 / (3 * p.m1)) * 100);
-    $('pkDesc').textContent = fa(gb) + ' گیگابایت · ' + (dur === 1 ? '۳۰ روز' : '۹۰ روز') + ' · ' + name;
-    $('pkNote').textContent = dur === 3
-      ? 'معادل ماهی ' + fa(Math.round(p.m3 / 3 / 1000) * 1000) + ' تومان · ' + fa(save) + '٪ صرفه‌جویی'
-      : 'قیمت هر گیگ -> ' + fa(Math.round(p.m1 / gb / 100) * 100) + ' تومان';
-  }
+  $('pk').dataset.proto = proto;
+  tween(PRICES[proto][sel[proto]]);
 }
 
-$('pkProtoSeg').onclick = e => { const b = e.target.closest('button'); if (b){ proto = b.dataset.p; update(); } };
-$('pkVols').onclick     = e => { const b = e.target.closest('.vol');  if (b){ gb = +b.dataset.g;    update(); } };$('pkSeg').onclick      = e => { const b = e.target.closest('button'); if (b){ dur = +b.dataset.d;   update(); } };
+$('pkProtoSeg').onclick = e => { const b = e.target.closest('button'); if (b){ proto = b.dataset.p; update(); } };$('pkOpts').onclick     = e => { const b = e.target.closest('.vol');  if (b){ sel[proto] = b.dataset.id; update(); } };
 
-/* ===== ویرایشگر قیمت ===== */
+/* این تابع به صورت هوشمند نام حجم انتخاب شده را ترکیب می‌کند */
+function optLabel(id){
+  for (const g of GROUPS[proto]) for (const [i, n, u] of g.items) if (i === id)
+    return (n + ' ' + u).trim();
+  return id;
+}
+
+$('pkBuy').onclick = () => {
+  const plan = PROTOCOLS[proto]; // پلن انتخابی کاربر
+  const vol = optLabel(sel[proto]); // حجم انتخابی کاربر
+  
+  // قالب پیام تلگرام که متغیرهای بالا در آن قرار می‌گیرند
+  const msg = '🙋🏻‍♂ سلام وقت بخیر\n\n❇️ قصد تهیه اشتراک با مشخصات زیر رو داشتم\n\n💢 پلن: ' + plan + '\n🕐 زمان: یک‌ماهه\n🔋حجم: ' + vol;
+  
+  const tgUrl = 'https://t.me/' + PAY.telegram + '?text=' + encodeURIComponent(msg);
+  
+  const link = document.createElement('a');
+  link.href = tgUrl;
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 if (EDIT) {
   const num = v => +String(v).replace(/[۰-۹٠-٩]/g, d => d.charCodeAt(0) >= 0x6F0 ? d.charCodeAt(0) - 0x6F0 : d.charCodeAt(0) - 0x660).replace(/[^\d]/g, '');
-  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(PLANS)); } catch (e) {} };
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(PRICES)); } catch (e) {} };
   function renderEd(){
-    const life = !!PROTOCOLS[proto].lifetime;
-    $('pkEdP').textContent = PROTOCOLS[proto].name;
-    $('pkEdG').innerHTML = (life ? '<b></b><b style="grid-column:span 2">قیمت زمان بی‌نهایت</b>' : '<b></b><b>یک‌ماهه</b><b>سه‌ماهه</b>') +
-      Object.keys(PLANS[proto]).map(g => life
-        ? `<span>${fa(+g)} گیگ</span><input style="grid-column:span 2" inputmode="numeric" data-g="${g}" data-k="p" value="${PLANS[proto][g].p}">`
-        : `<span>${fa(+g)} گیگ</span><input inputmode="numeric" data-g="${g}" data-k="m1" value="${PLANS[proto][g].m1}"><input inputmode="numeric" data-g="${g}" data-k="m3" value="${PLANS[proto][g].m3}">`).join('');
+    $('pkEdP').textContent = PROTOCOLS[proto];$('pkEdG').innerHTML = '<b></b><b>قیمت یک‌ماهه</b>' + GROUPS[proto].map(g => g.items.map(([id, n, u]) =>
+      `<span>${(n+' '+u).trim()}</span><input inputmode="numeric" data-id="${id}" value="${PRICES[proto][id]}">`).join('')).join('');
   }
   function code(){
-    return 'const PLANS = {\n' + Object.keys(PLANS).map(k => '  ' + k + ': {\n' +
-      Object.keys(PLANS[k]).map(g => `    ${g}: {` + Object.keys(PLANS[k][g]).map(f => f + ': ' + PLANS[k][g][f]).join(', ') + '}').join(',\n') + '\n  }').join(',\n') + '\n};';
+    return 'const PRICES = {\n' + Object.keys(PRICES).map(k => '  ' + k + ': { ' +
+      Object.keys(PRICES[k]).map(id => `${id}: ${PRICES[k][id]}`).join(', ') + ' }').join(',\n') + '\n};';
   }
   $('pkGear').hidden = false; $('pkEd').hidden = false; renderEd();
   $('pkGear').onclick = () => {$('pkEd').hidden = !$('pkEd').hidden; };$('pkProtoSeg').addEventListener('click', () => setTimeout(renderEd));
-  $('pkEdG').addEventListener('input', e => { const i = e.target, v = num(i.value); if (i.dataset.g && v > 0) { PLANS[proto][i.dataset.g][i.dataset.k] = v; save(); update(); } });$('pkCopy').onclick = async () => {
+  $('pkEdG').addEventListener('input', e => { const i = e.target, v = num(i.value); if (i.dataset.id && v > 0) { PRICES[proto][i.dataset.id] = v; save(); update(); } });$('pkCopy').onclick = async () => {
     const t = code(), o = $('pkOut'); o.hidden = false; o.value = t; o.select();
     try { await navigator.clipboard.writeText(t); $('pkCopy').textContent = 'کپی شد ✓'; setTimeout(() => $('pkCopy').textContent = 'کپی کد قیمت‌ها', 1500); }
     catch (e) { try { document.execCommand('copy'); } catch (_) {} }
   };
   $('pkReset').onclick = () => {
     if (!confirm('همه‌ی قیمت‌ها به مقدار اولیه برگردد؟')) return;
-    for (const k in DEFAULT) for (const g in DEFAULT[k]) Object.assign(PLANS[k][g], DEFAULT[k][g]);
+    for (const k in DEFAULT) for (const id in DEFAULT[k]) PRICES[k][id] = DEFAULT[k][id];
     try { localStorage.removeItem(KEY); } catch (e) {}
     renderEd(); update();
   };
